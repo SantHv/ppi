@@ -1,0 +1,5 @@
+Tipo de Trabajador: Enfermero
+Título: Pastillas
+Especificaciones: darle acetaminofen a jeferson
+
+
