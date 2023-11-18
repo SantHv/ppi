@@ -1,0 +1,29 @@
+Título: limpiar baño
+Especificaciones: limpiar el baño
+ID: #123
+
+Título: 123
+Especificaciones: 1234
+ID: #1234
+
+Título: sda
+Especificaciones: dsadasd
+ID: asdasdas
+
+Título: dad
+Especificaciones: adad
+ID: adad
+
+Título: adad
+Especificaciones: adad
+ID: daad
+
+Título: adsdasd
+Especificaciones: adad
+ID: asdasd
+
+Título: 11
+Especificaciones: 11
+ID: 11
+Empleado asignado (ID): Nombre:
+

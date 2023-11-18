@@ -1,0 +1,277 @@
+Usuario: s1
+Contraseï¿½a: s2
+Correo: s3
+Nombre: s4
+
+Usuario: santiago
+Contraseï¿½a: 123456
+Correo: santiagohincapie5412
+Nombre: Santiago hincapie
+
+Usuario: ss
+Contraseï¿½a: ss
+Correo: ss
+Nombre: ss
+
+Usuario: prueba1
+Contraseï¿½a: 12345
+Correo: pruebasdas
+Nombre: prueba123
+
+Usuario: 11
+Contraseï¿½a: 11
+Correo: 111
+Nombre: 11
+
+Usuario: prueba123
+Contraseï¿½a: prueba123
+Correo: prueba123
+Nombre: prueba123
+Tipo_Usuario: <PyQt5.QtWidgets.QLineEdit object at 0x00000215AA17B370>
+
+Usuario: prueba5412
+Contraseï¿½a: prueba5412
+Correo: prueba5412
+Nombre: prueba5412
+Tipo_Usuario: prueba5412
+
+Usuario: prueba12345
+Contraseï¿½a: prueba12345
+Correo: prueba12345
+Nombre: prueba12345
+Tusuario: prueba12345
+
+Usuario: 1
+Contraseï¿½a: 1
+Correo: 1
+Nombre: 1
+Tusuario: 11
+
+Usuario: manu
+Contraseï¿½a: manu
+Correo: manu
+Nombre: manu
+Tusuario: manu
+
+Usuario: manu
+Contraseï¿½a: manu
+Correo: manu
+Nombre: manu
+Tusuario: manu
+
+Usuario: manu1
+Contraseï¿½a: manu1
+Correo: manu1
+Nombre: manu1
+Tipousuario: manu1
+
+Usuario: x
+Contraseï¿½a: x
+Correo: x
+Nombre: x
+Tipousuario: x
+
+Usuario: XX
+Contraseï¿½a: XX
+Correo: XX
+Nombre: XX
+Tipousuario: XX
+
+Usuario: santi11
+Contraseï¿½a: santi11
+Correo: santi11
+Nombre: santi11
+Tipousuario: x5412
+
+Usuario: pruebasd123
+Contraseï¿½a: pruebasd123
+Correo: pruebasd123
+Nombre: pruebasd123
+Tipousuario: x5412
+
+Usuario: 333
+Contraseï¿½a: 333
+Correo: 333
+Nombre: 333
+TipoUsuario: 333
+
+Usuario: ss
+Contraseï¿½a: ss
+Correo: ss
+Nombre: ss
+TipoUsuario: x5412
+
+Usuario: 3017
+Contraseï¿½a: 3017
+Correo: 3017
+Nombre: 3017
+TipoUsuario: x1234
+
+Usuario: 777
+Contraseï¿½a: 777
+Correo: 777
+Nombre: 777
+TipoUsuario: x1234
+
+Usuario: j
+Contraseï¿½a: j
+Correo: j
+Nombre: j
+TipoUsuario: x5412
+
+Usuario: 55
+Contraseï¿½a: 55
+Correo: 55
+Nombre: 55
+TipoUsuario: x5412
+
+Usuario: 1111
+Contraseï¿½a: 1111
+Correo: 1111
+Nombre: 1111
+TipoUsuario: x5412
+
+Usuario: santiago
+Contraseï¿½a: santiago
+Correo: 1
+Nombre: 1
+TipoUsuario: x5412
+
+Usuario: 4
+Contraseï¿½a: 4
+Correo: 4
+Nombre: 4
+TipoUsuario: x1234
+
+Usuario: 0000
+Contraseï¿½a: 0000
+Correo: 0000
+Nombre: 0000
+TipoUsuario: Empleado
+
+Usuario: ssss1
+Contraseña: ssss1
+Correo: ssss1
+Nombre: ssss1
+TipoUsuario: Empleador
+
+Usuario: x1
+Contraseña: x1
+Correo: x1
+Nombre: x1
+TipoUsuario: Empleado
+
+Usuario: sss
+Contraseña: sss
+Correo: sss
+Nombre: sss
+TipoUsuario: Empleado
+
+Usuario: ssss
+Contraseña: ssss
+Correo: ssss
+Nombre: ssss
+TipoUsuario: Empleador
+
+Usuario: santiago1
+Contraseña: santiago1
+Correo: santiago1@gmail.com
+Nombre: santiago1
+TipoUsuario: Empleador
+
+Usuario: 1111
+Contraseña: 1111
+Correo: 1111
+Nombre: 1111
+TipoUsuario: Empleado
+
+Usuario: lll1
+Contraseña: lll1
+Correo: lll1@hotmail.com
+Nombre: lll1
+TipoUsuario: Empleado
+
+Usuario: xada11
+Contraseña: xada11
+Correo: xada11@hotmail.com
+Nombre: xada11
+TipoUsuario: Empleador
+
+Usuario: x111
+Contraseña: 1234
+Correo: sdsd@gmail.com
+Nombre: sds
+TipoUsuario: Empleado
+
+Usuario: x1111
+Contraseña: 5412
+Correo: sdaadj@gmail.com
+Nombre: santiago
+TipoUsuario: Empleador
+
+Usuario: empleador
+Contraseña: empleador
+Correo: empleador@gmail.com
+Nombre: empleador
+TipoUsuario: Empleador
+
+Usuario: empleado
+Contraseña: empleado
+Correo: empleado@gmail.com
+Nombre: empleado
+TipoUsuario: Empleado
+
+Usuario: 1
+Contraseña: 1
+Correo: 1@gmail.com
+Nombre: 1
+TipoUsuario: Empleado
+
+Usuario: 1414
+Contraseña: 1414
+Correo: 1414@gmail.com
+Nombre: 1414
+TipoUsuario: Empleado
+
+Usuario: 61616
+Contraseña: 61616
+Correo: 61616@gmail.com
+Nombre: 61616
+TipoUsuario: Empleador
+
+Usuario: dadad
+Contraseña: dadad
+Correo: dada@gmail.com
+Nombre: dadad
+TipoUsuario: Empleador
+
+Usuario: Empleado1
+Contraseña: Empleado1
+Correo: Empleado1@gmail.com
+Nombre: Empleado1
+TipoUsuario: Empleado
+
+Usuario: Empleador
+Contraseña: Empleador
+Correo: empleado45@gmail.com
+Nombre: santiago
+TipoUsuario: Empleador
+
+Usuario: santiago
+Contraseña: santiago
+Correo: santiago@gmail.com
+Nombre: santiago
+TipoUsuario: Empleado
+
+Usuario: 1234
+Contraseña: 1234
+Correo: 1234@gmail.com
+Nombre: 1234
+TipoUsuario: Empleado
+
+Usuario: empleador
+Contraseña: empleador
+Correo: empleador@gmail.com
+Nombre: empleador
+TipoUsuario: Empleador
+
