@@ -1,6 +1,6 @@
 import sys
 from PyQt5.QtCore import Qt
-from PyQt5.QtGui import QFontDatabase, QFont, QPixmap
+from PyQt5.QtGui import QFont, QPixmap
 from PyQt5 import QtGui
 from PyQt5.QtWidgets import (
     QWidget,
@@ -12,6 +12,7 @@ from PyQt5.QtWidgets import (
     QPushButton,
     QMainWindow,
     QMessageBox,
+    QComboBox,
 )
 
 class addtarea11(QMainWindow):
@@ -52,20 +53,37 @@ class addtarea11(QMainWindow):
         self.letra2.setFamily("Arial")
         self.letra2.setPointSize(12)
 
+        # Variable para mantener un contador de IDs
+        self.id_counter = 1
+
         # Hacemos el letrero
         self.letrero1 = QLabel(self)
-        self.letrero1.setText("Titulo De la Tarea:")
+        self.letrero1.setText("Tipo de Trabajador:")
         self.letrero1.setFont(self.letra1)
         self.letrero1.setStyleSheet("color: black; padding: 30px;")
         self.letrero1.setFixedWidth(250)
         self.letrero1.move(0, 20)
+
+        # Lista desplegable para elegir el tipo de trabajador
+        self.tipoTrabajadorCombo = QComboBox(self)
+        self.tipoTrabajadorCombo.addItems(["Chef", "Enfermero", "Jardinero"])
+        self.tipoTrabajadorCombo.setFixedWidth(400)
+        self.tipoTrabajadorCombo.move(30, 45)
+
+        # Hacemos el letrero
+        self.letrero2 = QLabel(self)
+        self.letrero2.setText("Titulo De la Tarea:")
+        self.letrero2.setFont(self.letra1)
+        self.letrero2.setStyleSheet("color: black; padding: 30px;")
+        self.letrero2.setFixedWidth(250)
+        self.letrero2.move(0, 80)
 
         # Hacemos el campo para ingresar el título de la tarea
         self.titleTask = QLineEdit(self)
         self.titleTask.setFixedWidth(400)
         self.titleTask.setStyleSheet("background-color: White")
         self.titleTask.setMaxLength(100)
-        self.titleTask.move(30, 45)
+        self.titleTask.move(30, 105)
 
         # Hacemos el letrero
         self.Qlabel1 = QLabel(self)
@@ -73,9 +91,8 @@ class addtarea11(QMainWindow):
         self.Qlabel1.setFont(self.letra2)
         self.Qlabel1.setStyleSheet("background-color: #White; color: #FFFFFF; padding: 40px;")
         self.Qlabel1.setFixedWidth(200)
-        self.Qlabel1.move(30, 80)
+        self.Qlabel1.move(30, 140)
         # Establecer la alineación vertical en la parte superior
-
 
         # Hacemos el campo para ingresar las especificaciones de la tarea
         self.Qline1 = QLineEdit(self)
@@ -83,7 +100,7 @@ class addtarea11(QMainWindow):
         self.Qline1.setStyleSheet("background-color: White")
         self.Qline1.setMaxLength(300)
         self.Qline1.setFixedHeight(200)
-        self.Qline1.move(30, 110)
+        self.Qline1.move(30, 170)
         # Establecer la alineación vertical en la parte superior
         self.Qline1.setAlignment(Qt.AlignTop)
         # Establecer la alineación vertical en la parte superior
@@ -96,21 +113,6 @@ class addtarea11(QMainWindow):
         self.botonTarea.setStyleSheet("background-color: #50D4FA; color: #000000  ; padding: 30px;")
         self.botonTarea.move(30, 380)
         self.botonTarea.clicked.connect(self.guardar_tarea)
-
-        # Hacemos el letrero
-        self.Qlabel2 = QLabel(self)
-        self.Qlabel2.setText("Agregar ID:")
-        self.Qlabel2.setFont(self.letra1)
-        self.Qlabel2.setStyleSheet("background-color: #White; color: #FFFFFF; padding: 40px;")
-        self.Qlabel2.setFixedWidth(200)
-        self.Qlabel2.move(30, 310)
-
-        # Hacemos el campo para ingresar el ID de la tarea
-        self.idTarea = QLineEdit(self)
-        self.idTarea.setFixedWidth(400)
-        self.idTarea.setStyleSheet("background-color: White")
-        self.idTarea.setMaxLength(100)
-        self.idTarea.move(30, 340)
 
         # Hacemos un botón para volver al menú
         self.volverMenu = QPushButton(self)
@@ -137,21 +139,27 @@ class addtarea11(QMainWindow):
 
     def guardar_tarea(self):
         # Obtener los datos de la tarea
+        tipo_trabajador = self.tipoTrabajadorCombo.currentText()
         titulo_tarea = self.titleTask.text()
         especificaciones_tarea = self.Qline1.text()
-        id_tarea = self.idTarea.text()
+
+        # Añadir un ID único a la tarea
+        tarea_info = f"ID: {self.id_counter}\nTipo de Trabajador: {tipo_trabajador}\nTítulo: {titulo_tarea}\nEspecificaciones: {especificaciones_tarea}\n"
+
+        # Incrementar el contador de IDs
+        self.id_counter += 1
 
         # Crear una cadena con la información de la tarea
-        tarea_info = f"Título: {titulo_tarea}\nEspecificaciones: {especificaciones_tarea}\nID: {id_tarea}\n"
+        tarea_info = f"Tipo de Trabajador: {tipo_trabajador}\nTítulo: {titulo_tarea}\nEspecificaciones: {especificaciones_tarea}\n"
 
-        # Escribir la información de la tarea en un archivo de texto
-        with open("tareas.txt", "a") as file:
+        # Escribir la información de la tarea en un archivo de texto específico
+        with open(f"{tipo_trabajador.lower()}_tareas.txt", "a") as file:
             file.write(tarea_info + "\n")
 
         QMessageBox.information(self, "Éxito", "Tarea agregada con éxito.")
+        self.tipoTrabajadorCombo.setCurrentIndex(0)
         self.titleTask.clear()
         self.Qline1.clear()
-        self.idTarea.clear()
 
 if __name__ == '__main__':
     aplicacion1 = QApplication(sys.argv)

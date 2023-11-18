@@ -1,141 +1,122 @@
 import sys
-
 from PyQt5 import QtGui
 from PyQt5.QtCore import Qt
-from PyQt5.QtGui import QFontDatabase, QFont, QPixmap
-from PyQt5.QtWidgets import QWidget, QDesktopWidget, QVBoxLayout, QLabel, QLineEdit, QApplication, QPushButton, \
-    QMainWindow
+from PyQt5.QtGui import QPixmap
+from PyQt5.QtWidgets import QWidget, QDesktopWidget, QVBoxLayout, QLabel, QApplication, \
+    QPushButton, QMainWindow, QMessageBox, QComboBox, QTabWidget
 
 
-class editTarea1(QMainWindow):
-    # Hacer el metodo de construccion de la ventana
+class EditTarea1(QMainWindow):
     def __init__(self):
-        super(editTarea1,self).__init__()
+        super(EditTarea1, self).__init__()
 
-        self.setWindowTitle("EDITAR TAREA")
-
+        self.setWindowTitle("ELIMINAR TAREAS")
         self.setWindowIcon(QtGui.QIcon("imagenes/icono1.png"))
 
-        # Poner el color  de fondo a la ventana
-
-
-        # Estableciendo las propiedades de ancho y alto
-        self.ancho = 500
-        self.alto = 400
-
-        # Establecer el tamaño de la ventana:
+        self.ancho = 600
+        self.alto = 500
         self.resize(self.ancho, self.alto)
 
-        # Estas lineas hacen que la ventana se vea en el centro:
         self.pantalla = self.frameGeometry()
         self.centro = QDesktopWidget().availableGeometry().center()
         self.pantalla.moveCenter(self.centro)
         self.move(self.pantalla.topLeft())
 
-        # Para que la ventana no se pueda cambiar de tamaño
-        # Se fija el ancho y el alto
-        self.setFixedWidth(self.ancho)
-        self.setFixedHeight(self.alto)
         self.set_background_image("imagenes/fnd2e.png")
 
-
-
-        # Hacemos el tipo de letra
-        self.letra1 = QFont()
-        # Le asignamos el tipo de letra descargado
+        self.letra1 = QtGui.QFont()
         self.letra1.setFamily("Arial")
-        # Le asignamos el tamaño
         self.letra1.setPointSize(10)
 
-        # Hacemos el tipo de letra
-        self.letra2 = QFont()
-        # Le asignamos el tipo de letra descargado
+        self.letra2 = QtGui.QFont()
         self.letra2.setFamily("Arial")
-        # Le asignamos el tamaño
         self.letra2.setPointSize(12)
 
+        self.tab_widget = QTabWidget(self)
+        self.tab_widget.setGeometry(20, 20, self.ancho - 40, self.alto - 40)
 
+        # Crear pestañas para cada tipo de tarea
+        self.crear_tab_tarea("Chef", "chef")
+        self.crear_tab_tarea("Jardinero", "jardinero")
+        self.crear_tab_tarea("Enfermero", "enfermero")
 
-        # Hacemos el letrero
-        self.login = QLabel(self)
-        # Le escribimos el texto
-        self.login.setText("ID de la Tarea:")
-        # Le asignamos el tipo de letra
-        self.login.setFont(self.letra2)
-        # Le ponemos color de fondo, color de texto y margenes al letrero
-        self.login.setStyleSheet("background-color: #White; color: #0000FF; padding: 40px;")
-        self.login.setFixedWidth(200)
+    def crear_tab_tarea(self, nombre_tab, tipo_tarea):
+        tab = QWidget()
 
-        self.login.move(50, 100)
+        letra_tab = QtGui.QFont()
+        letra_tab.setFamily("Arial")
+        letra_tab.setPointSize(12)
 
-        # Hacemos el campo para ingresar el primer numero
-        self.editLogin = QLineEdit(self)
-        # Definimos el ancho del campo en 200px
-        self.editLogin.setFixedWidth(300)
-        self.editLogin.setStyleSheet("background-color: White")
-        # Establecemos que solo se ingrese un numero maximo de 20 digitos
-        self.editLogin.setMaxLength(20)
+        tab_layout = QVBoxLayout()
 
-        self.editLogin.move(50, 150)
+        login = QLabel(tab)
+        login.setText(f"Seleccionar Tarea ({nombre_tab}):")
+        login.setFont(letra_tab)
+        login.setStyleSheet("background-color: #White; color: #0000FF; padding: 10px;")
+        login.setFixedWidth(300)
+        tab_layout.addWidget(login)
 
-        # Hacemos un boton para hacer los calculos
-        self.editTarea = QPushButton(self)
-        self.editTarea.setText("Editar Tarea")
-        # Establecemos el ancho del boton
-        self.editTarea.setFixedWidth(300)
-        # Le ponemos color de fondo, color de texto y margenes al boton
-        self.editTarea.setStyleSheet("background-color: #50D4FA; color: #000000  ; padding: 30px;")
-        # ponemos el boton de 5 hacia abajo
-        self.editTarea.move(50,200)
+        # Lista desplegable para seleccionar la tarea
+        tareasCombo = QComboBox(tab)
+        tareasCombo.setFixedWidth(300)
+        tab_layout.addWidget(tareasCombo)
 
+        # Botón para eliminar la tarea seleccionada
+        eliminarTareaBtn = QPushButton(tab)
+        eliminarTareaBtn.setText(f"Eliminar Tarea ({nombre_tab})")
+        eliminarTareaBtn.setFixedWidth(300)
+        eliminarTareaBtn.setStyleSheet("background-color: #50D4FA; color: #000000  ; padding: 10px;")
+        eliminarTareaBtn.clicked.connect(lambda: self.eliminar_tarea(tipo_tarea, tareasCombo))
+        tab_layout.addWidget(eliminarTareaBtn)
 
+        tab.setLayout(tab_layout)
+        self.tab_widget.addTab(tab, nombre_tab)
 
-        # Hacemos un boton para hacer los calculos
-        self.eliminarTarea = QPushButton(self)
-        self.eliminarTarea.setText("Eliminar Tarea")
-        # Establecemos el ancho del boton
-        self.eliminarTarea.setFixedWidth(300)
-        # Le ponemos color de fondo, color de texto y margenes al boton
-        self.eliminarTarea.setStyleSheet("background-color: #50D4FA; color: #000000  ; padding: 30px;")
-        # ponemos el boton de 5 hacia abajo
-        self.eliminarTarea.move(50, 240)
+        # Llenar la lista desplegable con las tareas existentes
+        self.llenar_lista_tareas(tipo_tarea, tareasCombo)
 
-        # Botón para volver al menú principal
-        self.volverMenu = QPushButton(self)
-        self.volverMenu.setText("Volver al Menú")
-        self.volverMenu.setFixedWidth(150)
-        self.volverMenu.setFixedHeight(40)
-        self.volverMenu.setFont(self.letra1)
-        self.volverMenu.setStyleSheet("background-color: #50D4FA; color: #000000  ; padding: 10px;")
-        self.volverMenu.move(50, 320)
-        self.volverMenu.clicked.connect(self.cerrar_ventana)
+    def llenar_lista_tareas(self, tipo_tarea, combo_box):
+        # Lógica para leer las tareas desde el archivo y agregarlas a la lista desplegable
+        nombre_archivo = f"{tipo_tarea}_tareas.txt"
+        with open(nombre_archivo, "r") as file:
+            for linea in file:
+                tarea_info = linea.strip()  # Asumiendo que cada línea representa una tarea con un identificador único
+                combo_box.addItem(tarea_info)
 
-    def cerrar_ventana(self):
-        self.close()
+    def eliminar_tarea(self, tipo_tarea, combo_box):
+        tarea_seleccionada = combo_box.currentText()
+
+        # Obtiene el identificador único de la tarea seleccionada
+        tarea_id, _ = tarea_seleccionada.split(": ", 1)
+
+        # Implementa aquí la lógica para eliminar la tarea seleccionada del archivo correspondiente
+        nombre_archivo = f"{tipo_tarea}_tareas.txt"
+        try:
+            with open(nombre_archivo, "r") as file:
+                lineas = file.readlines()
+            with open(nombre_archivo, "w") as file:
+                for linea in lineas:
+                    if tarea_id not in linea.split(":")[0].strip():
+                        file.write(linea)
+            QMessageBox.information(self, "Éxito", f"Tarea '{tarea_seleccionada}' eliminada con éxito.")
+            combo_box.clear()
+            self.llenar_lista_tareas(tipo_tarea, combo_box)  # Actualiza la lista después de la eliminación
+        except Exception as e:
+            print(f"Error al eliminar la tarea: {str(e)}")
+            QMessageBox.warning(self, "Error", f"Error al eliminar la tarea: {str(e)}")
+
     def set_background_image(self, image_path):
-        # Load the background image
         background_image = QPixmap(image_path).scaled(self.ancho, self.alto)
-
-        # Create a QLabel for the background image
         background_label = QLabel(self)
         background_label.setPixmap(background_image)
         background_label.setGeometry(0, 0, self.ancho, self.alto)
-
-        # Set the background image to be in the back of all other widgets
         background_label.lower()
 
 
-
-
-
-# Este if de decision se llama si se ejecuta el archivo
 if __name__ == '__main__':
-    # creamos una aplicacion pyqt5
-    aplicacion1 = QApplication(sys.argv)
-    # creamos una ventana
-    v1 = editTarea1()
-    # indicamos que la ventana se deje observar
-    v1.show()
-    # indicamos que la ventana se deje cerrar
+    aplicacion = QApplication(sys.argv)
 
-    sys.exit(aplicacion1.exec_())
+    ventana_eliminar_tarea = EditTarea1()
+    ventana_eliminar_tarea.show()
+
+    sys.exit(aplicacion.exec_())

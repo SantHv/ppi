@@ -27,3 +27,28 @@ Especificaciones: 11
 ID: 11
 Empleado asignado (ID): Nombre:
 
+Título: ssss
+Especificaciones: ssss
+ID: ssss
+Usuario: Usuario: s1
+
+Título: ss
+Especificaciones: ss
+ID: ss
+Usuario: Usuario: santiago
+
+Título: s
+Especificaciones: s
+ID: ss
+Usuario: Usuario: 1234
+
+Título: 5151
+Especificaciones: 5151
+ID: 51515
+Usuario: Usuario: 1234
+
+Tipo de Trabajador: Chef
+Título: chef
+Especificaciones: chef
+ID: chef
+

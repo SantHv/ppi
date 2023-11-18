@@ -2,7 +2,8 @@ import sys
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QFont, QPixmap
 from PyQt5 import QtGui
-from PyQt5.QtWidgets import QApplication, QMainWindow, QPushButton, QLabel, QTextEdit
+from PyQt5.QtWidgets import QApplication, QMainWindow, QPushButton, QLabel, QTextEdit, QVBoxLayout, QWidget, QTabWidget
+
 
 class VerTareas(QMainWindow):
     def __init__(self):
@@ -35,18 +36,12 @@ class VerTareas(QMainWindow):
         fuente2.setFamily("Arial")
         fuente2.setPointSize(10)
 
-        # Letrero
-        letrero1 = QLabel(self)
-        letrero1.setText("Ver Tareas")
-        letrero1.setFont(fuente)
-        letrero1.setStyleSheet("color: black; padding: 30px;")
-        letrero1.setFixedWidth(400)
-        letrero1.move(300, 40)
+        # QTabWidget para las pestañas
+        self.tabs = QTabWidget(self)
+        self.tabs.setGeometry(10, 70, self.ancho - 20, self.alto - 80)
 
-        # Área de texto para mostrar las tareas
-        self.textoHistorial = QTextEdit(self)
-        self.textoHistorial.setReadOnly(True)
-        self.textoHistorial.setGeometry(100, 100, 600, 400)
+        # Llama al método para cargar y mostrar las tareas en las pestañas
+        self.cargar_tareas()
 
         # Botón para volver al menú principal
         self.volverMenu = QPushButton(self)
@@ -58,16 +53,28 @@ class VerTareas(QMainWindow):
         self.volverMenu.move(325, 520)
         self.volverMenu.clicked.connect(self.cerrar_ventana)
 
-        # Llama al método para cargar y mostrar las tareas
-        self.cargar_tareas()
-
     def cargar_tareas(self):
-        try:
-            with open("tareas.txt", "r") as file:
-                tareas = file.read()
-                self.textoHistorial.setPlainText(tareas)
-        except FileNotFoundError:
-            self.textoHistorial.setPlainText("No hay tareas disponibles.")
+        tipos_trabajador = ["Chef", "Jardinero", "Enfermero"]
+
+        for tipo in tipos_trabajador:
+            try:
+                with open(f"{tipo.lower()}_tareas.txt", "r") as file:
+                    tareas = file.read()
+                    self.agregar_tab(tipo, tareas)
+            except FileNotFoundError:
+                self.agregar_tab(tipo, "No hay tareas disponibles.")
+
+    def agregar_tab(self, tipo, tareas):
+        tab = QWidget()
+        layout = QVBoxLayout(tab)
+
+        textoHistorial = QTextEdit(tab)
+        textoHistorial.setReadOnly(True)
+        textoHistorial.setPlainText(tareas)
+
+        layout.addWidget(textoHistorial)
+
+        self.tabs.addTab(tab, tipo)
 
     def set_background_image(self, image_path):
         # Load the background image
@@ -83,6 +90,7 @@ class VerTareas(QMainWindow):
 
     def cerrar_ventana(self):
         self.close()
+
 
 if __name__ == '__main__':
     aplicacion1 = QApplication(sys.argv)

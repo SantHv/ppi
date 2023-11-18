@@ -7,7 +7,7 @@ from PyQt5.QtWidgets import QApplication, QMainWindow, QPushButton, QLabel
 # Importa tus otras clases
 from addTarea import addtarea11
 from AddEmpleado import Addemple1
-from editTarea import editTarea1
+from editTarea import EditTarea1
 from historytareas import HistorialTareas
 
 class Login2(QMainWindow):
@@ -108,7 +108,7 @@ class Login2(QMainWindow):
         self.ventana_add_empleado.show()
     
     def abrir_ventana_edit_tarea(self):
-        self.ventana_edit_tarea = editTarea1()
+        self.ventana_edit_tarea = EditTarea1()
         self.ventana_edit_tarea.show()
 
     def abrir_ventana_history_task(self):
