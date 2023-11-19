@@ -9,6 +9,7 @@ from addTarea import addtarea11
 from AddEmpleado import Addemple1
 from editTarea import EditTarea1
 from historytareas import HistorialTareas
+from reportes_tareas import reportes_tareas  # Importa la clase reportes_tareas
 
 class Login2(QMainWindow):
     def __init__(self):
@@ -55,7 +56,7 @@ class Login2(QMainWindow):
         self.addTarea.setFixedHeight(40)
         self.addTarea.setFont(fuente2)
         self.addTarea.setStyleSheet("background-color: #50D4FA; color: #000000; padding: 30px;")
-        self.addTarea.move(220, 280)
+        self.addTarea.move(220, 200)
         self.addTarea.clicked.connect(self.abrir_ventana_add_tarea)
 
         # Botón para historial de tareas
@@ -65,7 +66,7 @@ class Login2(QMainWindow):
         self.historyTask.setFixedHeight(40)
         self.historyTask.setFont(fuente2)
         self.historyTask.setStyleSheet("background-color: #50D4FA; color: #000000; padding: 30px;")
-        self.historyTask.move(600, 280)
+        self.historyTask.move(220, 280)
         self.historyTask.clicked.connect(self.abrir_ventana_history_task)
 
         # Botón para editar tarea o eliminar
@@ -78,15 +79,16 @@ class Login2(QMainWindow):
         self.ediTareaclean.move(600, 200)
         self.ediTareaclean.clicked.connect(self.abrir_ventana_edit_tarea)
 
-        # Botón para agregar empleado
-        self.addEmpleado = QPushButton(self)
-        self.addEmpleado.setText("Agregar Emplead@")
-        self.addEmpleado.setFixedWidth(350)
-        self.addEmpleado.setFixedHeight(40)
-        self.addEmpleado.setFont(fuente2)
-        self.addEmpleado.setStyleSheet("background-color: #50D4FA; color: #000000; padding: 30px;")
-        self.addEmpleado.move(220, 200)
-        self.addEmpleado.clicked.connect(self.abrir_ventana_add_empleado)
+        # Botón para ver reportes
+        self.reportes = QPushButton(self)
+        self.reportes.setText("Ver Reportes")
+        self.reportes.setFixedWidth(350)
+        self.reportes.setFixedHeight(40)
+        self.reportes.setFont(fuente2)
+        self.reportes.setStyleSheet("background-color: #50D4FA; color: #000000; padding: 30px;")
+        self.reportes.move(600, 280)
+        self.reportes.clicked.connect(self.mostrar_reportes)
+
     def set_background_image(self, image_path):
         # Load the background image
         background_image = QPixmap(image_path).scaled(self.ancho, self.alto)
@@ -103,10 +105,6 @@ class Login2(QMainWindow):
         self.ventana_add_tarea = addtarea11()
         self.ventana_add_tarea.show()
 
-    def abrir_ventana_add_empleado(self):
-        self.ventana_add_empleado = Addemple1()
-        self.ventana_add_empleado.show()
-    
     def abrir_ventana_edit_tarea(self):
         self.ventana_edit_tarea = EditTarea1()
         self.ventana_edit_tarea.show()
@@ -114,6 +112,11 @@ class Login2(QMainWindow):
     def abrir_ventana_history_task(self):
         self.ventana_history_task = HistorialTareas()
         self.ventana_history_task.show()
+
+    def mostrar_reportes(self):
+        # Crear una instancia de la clase reportes_tareas y mostrarla
+        self.ventana_reportes_tareas = reportes_tareas()
+        self.ventana_reportes_tareas.show()
 
 if __name__ == '__main__':
     aplicacion1 = QApplication(sys.argv)

@@ -13,6 +13,7 @@ from PyQt5.QtWidgets import (
     QMainWindow,
     QMessageBox,
     QComboBox,
+    QCalendarWidget,
 )
 
 class addtarea11(QMainWindow):
@@ -23,8 +24,8 @@ class addtarea11(QMainWindow):
         self.setWindowIcon(QtGui.QIcon("imagenes/icono1.png"))
 
         # Estableciendo las propiedades de ancho y alto
-        self.ancho = 500
-        self.alto = 500
+        self.ancho = 800
+        self.alto = 600
 
         # Establecer el tamaño de la ventana:
         self.resize(self.ancho, self.alto)
@@ -106,12 +107,25 @@ class addtarea11(QMainWindow):
         # Establecer la alineación vertical en la parte superior
         self.Qline1.setAlignment(Qt.AlignTop)
 
+        # Hacemos el letrero
+        self.letrero3 = QLabel(self)
+        self.letrero3.setText("Fecha de Tarea:")
+        self.letrero3.setFont(self.letra1)
+        self.letrero3.setStyleSheet("color: black; padding: 30px;")
+        self.letrero3.setFixedWidth(250)
+        self.letrero3.move(420, 100)
+
+        # Agregar el calendario
+        self.calendarWidget = QCalendarWidget(self)
+        self.calendarWidget.setGridVisible(True)
+        self.calendarWidget.setGeometry(450, 170, 300, 310)
+
         # Hacemos un botón para agregar la tarea
         self.botonTarea = QPushButton(self)
         self.botonTarea.setText("Agregar Tarea")
         self.botonTarea.setFixedWidth(400)
         self.botonTarea.setStyleSheet("background-color: #50D4FA; color: #000000  ; padding: 30px;")
-        self.botonTarea.move(30, 380)
+        self.botonTarea.move(30, 400)
         self.botonTarea.clicked.connect(self.guardar_tarea)
 
         # Hacemos un botón para volver al menú
@@ -119,7 +133,7 @@ class addtarea11(QMainWindow):
         self.volverMenu.setText("Volver Menu")
         self.volverMenu.setFixedWidth(400)
         self.volverMenu.setStyleSheet("background-color: #50D4FA; color: #000000  ; padding: 30px;")
-        self.volverMenu.move(30, 420)
+        self.volverMenu.move(30, 450)
         self.volverMenu.clicked.connect(self.cerrar_ventana)
 
     def cerrar_ventana(self):
@@ -142,15 +156,16 @@ class addtarea11(QMainWindow):
         tipo_trabajador = self.tipoTrabajadorCombo.currentText()
         titulo_tarea = self.titleTask.text()
         especificaciones_tarea = self.Qline1.text()
+        fecha_tarea = self.calendarWidget.selectedDate().toString(Qt.ISODate)
 
         # Añadir un ID único a la tarea
-        tarea_info = f"ID: {self.id_counter}\nTipo de Trabajador: {tipo_trabajador}\nTítulo: {titulo_tarea}\nEspecificaciones: {especificaciones_tarea}\n"
+        tarea_info = f"ID: {self.id_counter}\nTipo de Trabajador: {tipo_trabajador}\nTítulo: {titulo_tarea}\nEspecificaciones: {especificaciones_tarea}\nFecha: {fecha_tarea}\n"
 
         # Incrementar el contador de IDs
         self.id_counter += 1
 
         # Crear una cadena con la información de la tarea
-        tarea_info = f"Tipo de Trabajador: {tipo_trabajador}\nTítulo: {titulo_tarea}\nEspecificaciones: {especificaciones_tarea}\n"
+        tarea_info = f"Tipo de Trabajador: {tipo_trabajador}\nTítulo: {titulo_tarea}\nEspecificaciones: {especificaciones_tarea}\nFecha: {fecha_tarea}\n"
 
         # Escribir la información de la tarea en un archivo de texto específico
         with open(f"{tipo_trabajador.lower()}_tareas.txt", "a") as file:

@@ -2,7 +2,8 @@ import sys
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QFont, QPixmap
 from PyQt5 import QtGui
-from PyQt5.QtWidgets import QApplication, QMainWindow, QPushButton, QLabel, QTextEdit
+from PyQt5.QtWidgets import QApplication, QMainWindow, QPushButton, QLabel, QTextEdit, QTabWidget, QWidget, QVBoxLayout
+
 
 class HistorialTareas(QMainWindow):
     def __init__(self):
@@ -39,10 +40,13 @@ class HistorialTareas(QMainWindow):
         letrero1.setFixedWidth(400)
         letrero1.move(250, 40)
 
-        self.textoHistorial = QTextEdit(self)
-        self.textoHistorial.setPlaceholderText("Aquí se mostrará el historial de tareas.")
-        self.textoHistorial.setReadOnly(True)
-        self.textoHistorial.setGeometry(100, 100, 600, 400)
+        self.tabs = QTabWidget(self)
+        self.tabs.setGeometry(100, 100, 600, 400)
+
+        # Add tabs for different employees
+        self.add_tab("chef", "Chef Tareas")
+        self.add_tab("enfermero", "Enfermero Tareas")
+        self.add_tab("jardinero", "Jardinero Tareas")
 
         self.volverMenu = QPushButton(self)
         self.volverMenu.setText("Volver al Menú")
@@ -53,16 +57,25 @@ class HistorialTareas(QMainWindow):
         self.volverMenu.move(310, 520)
         self.volverMenu.clicked.connect(self.cerrar_ventana)
 
-        # Llama al método para cargar y mostrar el historial
-        self.cargar_historial()
+    def add_tab(self, empleado, nombre_tab):
+        tab = QWidget()
+        text_edit = QTextEdit(tab)
+        text_edit.setPlaceholderText(f"Aquí se mostrará el historial de tareas para {nombre_tab}.")
+        text_edit.setReadOnly(True)
+        text_edit.setGeometry(0, 0, 600, 400)
+        tab.layout = QVBoxLayout(tab)
+        tab.layout.addWidget(text_edit)
+        tab.setLayout(tab.layout)
+        self.tabs.addTab(tab, nombre_tab)
+        self.cargar_historial(empleado, text_edit)
 
-    def cargar_historial(self):
+    def cargar_historial(self, empleado, text_edit):
         try:
-            with open("tareas.txt", "r") as file:
+            with open(f"{empleado}_tareas.txt", "r") as file:
                 historial = file.read()
-                self.textoHistorial.setPlainText(historial)
+                text_edit.setPlainText(historial)
         except FileNotFoundError:
-            self.textoHistorial.setPlainText("El historial de tareas está vacío.")
+            text_edit.setPlainText(f"El historial de tareas para {empleado} está vacío.")
 
     def cerrar_ventana(self):
         self.close()
