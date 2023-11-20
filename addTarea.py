@@ -1,7 +1,7 @@
 import sys
 from PyQt5.QtCore import Qt
-from PyQt5.QtGui import QFont, QPixmap
 from PyQt5 import QtGui
+from PyQt5.QtGui import QFont, QPixmap
 from PyQt5.QtWidgets import (
     QWidget,
     QDesktopWidget,
@@ -46,12 +46,12 @@ class addtarea11(QMainWindow):
 
         # Hacemos el tipo de letra
         self.letra1 = QFont()
-        self.letra1.setFamily("Arial")
+        self.letra1.setFamily("Andale mono")
         self.letra1.setPointSize(12)
 
         # Hacemos el tipo de letra
         self.letra2 = QFont()
-        self.letra2.setFamily("Arial")
+        self.letra2.setFamily("Andale mono")
         self.letra2.setPointSize(12)
 
         # Variable para mantener un contador de IDs
@@ -63,13 +63,13 @@ class addtarea11(QMainWindow):
         self.letrero1.setFont(self.letra1)
         self.letrero1.setStyleSheet("color: black; padding: 30px;")
         self.letrero1.setFixedWidth(250)
-        self.letrero1.move(0, 20)
+        self.letrero1.move(0, 50)
 
         # Lista desplegable para elegir el tipo de trabajador
         self.tipoTrabajadorCombo = QComboBox(self)
         self.tipoTrabajadorCombo.addItems(["Chef", "Enfermero", "Jardinero"])
         self.tipoTrabajadorCombo.setFixedWidth(400)
-        self.tipoTrabajadorCombo.move(30, 45)
+        self.tipoTrabajadorCombo.move(30, 80)
 
         # Hacemos el letrero
         self.letrero2 = QLabel(self)
@@ -77,14 +77,14 @@ class addtarea11(QMainWindow):
         self.letrero2.setFont(self.letra1)
         self.letrero2.setStyleSheet("color: black; padding: 30px;")
         self.letrero2.setFixedWidth(250)
-        self.letrero2.move(0, 80)
+        self.letrero2.move(0, 110)
 
         # Hacemos el campo para ingresar el título de la tarea
         self.titleTask = QLineEdit(self)
         self.titleTask.setFixedWidth(400)
         self.titleTask.setStyleSheet("background-color: White")
         self.titleTask.setMaxLength(100)
-        self.titleTask.move(30, 105)
+        self.titleTask.move(30, 140)
 
         # Hacemos el letrero
         self.Qlabel1 = QLabel(self)
@@ -92,7 +92,7 @@ class addtarea11(QMainWindow):
         self.Qlabel1.setFont(self.letra2)
         self.Qlabel1.setStyleSheet("background-color: #White; color: #FFFFFF; padding: 40px;")
         self.Qlabel1.setFixedWidth(200)
-        self.Qlabel1.move(30, 140)
+        self.Qlabel1.move(30, 180)
         # Establecer la alineación vertical en la parte superior
 
         # Hacemos el campo para ingresar las especificaciones de la tarea
@@ -101,7 +101,7 @@ class addtarea11(QMainWindow):
         self.Qline1.setStyleSheet("background-color: White")
         self.Qline1.setMaxLength(300)
         self.Qline1.setFixedHeight(200)
-        self.Qline1.move(30, 170)
+        self.Qline1.move(30, 220)
         # Establecer la alineación vertical en la parte superior
         self.Qline1.setAlignment(Qt.AlignTop)
         # Establecer la alineación vertical en la parte superior
@@ -113,19 +113,19 @@ class addtarea11(QMainWindow):
         self.letrero3.setFont(self.letra1)
         self.letrero3.setStyleSheet("color: black; padding: 30px;")
         self.letrero3.setFixedWidth(250)
-        self.letrero3.move(420, 100)
+        self.letrero3.move(415, 40)
 
         # Agregar el calendario
         self.calendarWidget = QCalendarWidget(self)
         self.calendarWidget.setGridVisible(True)
-        self.calendarWidget.setGeometry(450, 170, 300, 310)
+        self.calendarWidget.setGeometry(450, 80, 300, 310)
 
         # Hacemos un botón para agregar la tarea
         self.botonTarea = QPushButton(self)
         self.botonTarea.setText("Agregar Tarea")
         self.botonTarea.setFixedWidth(400)
         self.botonTarea.setStyleSheet("background-color: #50D4FA; color: #000000  ; padding: 30px;")
-        self.botonTarea.move(30, 400)
+        self.botonTarea.move(30, 450)
         self.botonTarea.clicked.connect(self.guardar_tarea)
 
         # Hacemos un botón para volver al menú
@@ -133,7 +133,7 @@ class addtarea11(QMainWindow):
         self.volverMenu.setText("Volver Menu")
         self.volverMenu.setFixedWidth(400)
         self.volverMenu.setStyleSheet("background-color: #50D4FA; color: #000000  ; padding: 30px;")
-        self.volverMenu.move(30, 450)
+        self.volverMenu.move(30, 500)
         self.volverMenu.clicked.connect(self.cerrar_ventana)
 
     def cerrar_ventana(self):
@@ -167,14 +167,18 @@ class addtarea11(QMainWindow):
         # Crear una cadena con la información de la tarea
         tarea_info = f"Tipo de Trabajador: {tipo_trabajador}\nTítulo: {titulo_tarea}\nEspecificaciones: {especificaciones_tarea}\nFecha: {fecha_tarea}\n"
 
-        # Escribir la información de la tarea en un archivo de texto específico
-        with open(f"{tipo_trabajador.lower()}_tareas.txt", "a") as file:
-            file.write(tarea_info + "\n")
+        # Escribir la información de la tarea en los archivos correspondientes
+        self.guardar_en_archivo(tipo_trabajador.lower() + "_tareas.txt", tarea_info)
+        self.guardar_en_archivo("historial_tareas.txt", tarea_info)
 
         QMessageBox.information(self, "Éxito", "Tarea agregada con éxito.")
         self.tipoTrabajadorCombo.setCurrentIndex(0)
         self.titleTask.clear()
         self.Qline1.clear()
+
+    def guardar_en_archivo(self, nombre_archivo, tarea_info):
+        with open(nombre_archivo, "a") as file:
+            file.write(tarea_info + "\n")
 
 if __name__ == '__main__':
     aplicacion1 = QApplication(sys.argv)

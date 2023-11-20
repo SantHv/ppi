@@ -25,11 +25,11 @@ class EditTarea1(QMainWindow):
         self.set_background_image("imagenes/fnd2e.png")
 
         self.letra1 = QtGui.QFont()
-        self.letra1.setFamily("Arial")
+        self.letra1.setFamily("Andale mono")
         self.letra1.setPointSize(10)
 
         self.letra2 = QtGui.QFont()
-        self.letra2.setFamily("Arial")
+        self.letra2.setFamily("Andale mono")
         self.letra2.setPointSize(12)
 
         self.tab_widget = QTabWidget(self)

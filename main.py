@@ -50,7 +50,7 @@ class Login5(QMainWindow):
         # Hacemos el tipo de letra
         self.letra1 = QFont()
         # Le asignamos el tipo de letra descargado
-        self.letra1.setFamily("Arial")
+        self.letra1.setFamily("Andale mono")
         # Le asignamos el tamaño
         self.letra1.setPointSize(18)
 
@@ -64,7 +64,7 @@ class Login5(QMainWindow):
         # Hacemos el tipo de letra
         self.letra2 = QFont()
         # Le asignamos el tipo de letra descargado
-        self.letra2.setFamily("Arial")
+        self.letra2.setFamily("Andale mono")
         # Le asignamos el tamaño
         self.letra2.setPointSize(16)
 
@@ -78,18 +78,18 @@ class Login5(QMainWindow):
         self.letrero1.setStyleSheet("background-color:color: #09B4AC; padding: 50px;")
         self.letrero1.setFixedWidth(500)
 
-        self.letrero1.move(340, 30)
+        self.letrero1.move(340, 50)
 
         # Hacemos el letrero
         self.login = QLabel(self)
         # Le escribimos el texto
         self.login.setText("Usuario")
         # Le asignamos el tipo de letra
-        self.login.setFont(self.letra2)
+        self.login.setFont(self.letra1)
         # Le ponemos color de fondo, color de texto y margenes al letrero
         self.login.setStyleSheet("background-color: #White; color: #0000FF; padding: 40px;")
         self.login.setFixedWidth(250)
-        self.login.move(305,100)
+        self.login.move(305,120)
 
 
 
@@ -111,7 +111,7 @@ class Login5(QMainWindow):
         # Le escribimos el texto
         self.contraseña.setText("Contraseña")
         # Le asignamos el tipo de letra
-        self.contraseña.setFont(self.letra2)
+        self.contraseña.setFont(self.letra1)
         # Le ponemos color de fondo, color de texto y margenes al letrero
         self.contraseña.setStyleSheet("background-color: #White; color: #FFFFFF; padding: 40px;")
         self.contraseña.setFixedWidth(200)
@@ -130,9 +130,9 @@ class Login5(QMainWindow):
 
         self.tipoUsuario = QLabel(self)
         self.tipoUsuario.setText("Tipo de Usuario")
-        self.tipoUsuario.setFont(self.letra2)
+        self.tipoUsuario.setFont(self.letra1)
         self.tipoUsuario.setStyleSheet("background-color: #White; color: #FFFFFF; padding: 40px;")
-        self.tipoUsuario.setFixedWidth(200)
+        self.tipoUsuario.setFixedWidth(250)
         self.tipoUsuario.move(305, 280)
 
         # Combo box para seleccionar el tipo de usuario
@@ -145,19 +145,20 @@ class Login5(QMainWindow):
         self.botonCalcular = QPushButton(self)
         self.botonCalcular.setText("Iniciar Sesión")
         self.botonCalcular.setFixedWidth(200)
-        self.botonCalcular.setStyleSheet("background-color: #50D4FA; color: #000000  ; padding: 30px;")
+        self.botonCalcular.setStyleSheet("background-color: #50D4FA; color: #000000  ; padding: 30px;font-weight: bold;")
         self.botonCalcular.move(325, 450)
         self.botonCalcular.setFixedHeight(40)
 
         self.botonRegistrar = QPushButton(self)
         self.botonRegistrar.setText("Registrarse")
         self.botonRegistrar.setFixedWidth(200)
-        self.botonRegistrar.setStyleSheet("background-color: #50D4FA; color: #000000  ; padding: 30px;")
+        self.botonRegistrar.setStyleSheet("background-color: #50D4FA; color: #000000  ; padding: 30px;font-weight: bold;")
         self.botonRegistrar.move(325, 500)
         self.botonRegistrar.setFixedHeight(40)
 
         # Create a checkbox for toggling password visibility
         self.mostrar_contraseña_checkbox = QCheckBox("Mostrar Contraseña", self)
+        self.mostrar_contraseña_checkbox.setStyleSheet("font-weight: bold;")
         self.mostrar_contraseña_checkbox.move(570, 240)
         self.mostrar_contraseña_checkbox.setFixedWidth(200)
         self.mostrar_contraseña_checkbox.stateChanged.connect(self.toggle_password_visibility)

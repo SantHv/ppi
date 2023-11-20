@@ -6,7 +6,7 @@ from PyQt5.QtWidgets import QApplication, QMainWindow, QPushButton, QLabel
 
 # Importa tus otras clases
 from addTarea import addtarea11
-from AddEmpleado import Addemple1
+
 from editTarea import EditTarea1
 from historytareas import HistorialTareas
 from reportes_tareas import reportes_tareas  # Importa la clase reportes_tareas
